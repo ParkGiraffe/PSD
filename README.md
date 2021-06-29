@@ -8,4 +8,5 @@
 <h1> Swift </h1>
 <h2> swift_study </h2>
 1. 변수(var)와 상수(let), 배열과 딕셔너리
+
 2. 조건문(if, switch)과 반복문(for, while)
