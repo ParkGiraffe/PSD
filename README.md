@@ -9,3 +9,4 @@
 <h2> swift_study </h2>
 <h4>1. 변수(var)와 상수(let), 배열과 딕셔너리 </h4>
 <h4>2. 조건문(if, switch)과 반복문(for, while)</h4>
+<h4>3. 옵셔널과 옵셔널 바인딩</h4>
