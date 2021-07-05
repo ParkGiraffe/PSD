@@ -124,3 +124,14 @@ func generator_five(message : String) -> (String, String) -> String {
 func generator_six(message: String) -> (String, String) -> String {
   return { $1 + $0 + message }
 }
+
+// 클로져는 변수처럼 정의할 수 있다.
+let hello_closure : (String, String) -> String = {$0 + $1 + "님 안녕하세요!"}
+hello_closure("박","요셉")
+
+// 옵셔널로도 정의할 수 있다.
+let hello_optional : ((String, String) -> String)?
+hello_optional?("박","요셉")
+
+
+
