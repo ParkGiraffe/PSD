@@ -68,25 +68,59 @@ func hello_four (name:String, time: Int) {
 // 함수 안에 정의한 함수를 반환할 수도 있다.
 // generator의 함수의 반환타입은 (String) -> String이다.
 // 즉 'generator'는 '문자열[message]을 받아서 문자열을 반환하는 함수[hello(name) + message]'를 반환하는 함수이다.
-func generator(message: String) -> (String) -> String {
+func generator_one(message: String) -> (String) -> String {
   func hello(name: String) -> String {
     return name + message
   }
   return hello
 }
 
-let hello = generator(message: "님 안녕하세요!")
+let hello = generator_one(message: "님 안녕하세요!")
 hello("전수열")
 
 
 // generator 안의 hello 함수가 여러 개의 파라미터를 받는다면?
 // (String)->String에서 (String, String) > String으로 바뀌었다. 문자열 두 개를 받아서 문자열을 반환한다는 의미이다.
-func generator(message: String) -> (String, String) -> String {
+func generator_two(message: String) -> (String, String) -> String {
   func hello(firstName: String, lastName: String) -> String {
     return lastName + firstName + message
   }
   return hello
 }
 
-let hello = generator(message: "님 안녕하세요!")
+let hello = generator_two(message: "님 안녕하세요!")
 hello("수열", "전")
+
+
+
+// 2. 클로져(closure) : 중괄호로 감싸진 '실행 가능한 코드 블럭'
+// 이중 함수, 특히 여러 개의 파라미터를 받는 이중 함수의 경우 중괄호(클로져)를 사용해서 더 간결하게 만들 수 있다.
+// 함수와 다르게 함 수 이름 정의가 따로 존재한다. 하지만 파라미터를 받을 수 있고, 반환 값이 존재할 수 있기에 함수와 거의 일치하다.
+// 즉, 함수는 이름이 있는 클로져이다.
+// 'in' 키워드를 사용해서 파라미터, 반환 타입 영역과 실제 클로저의 코드를 분리한다.
+func generator_three(message: String) -> (String, String) -> string{
+    return{ (firstName : String, lastName : String) -> String in
+        return lastName + firstName + message
+    }
+}
+
+// 생략1. generator() 함수에서 반환하는 타입을 가지고 클로저에서 어떤 파라미터를 받고 어떤 타입을 반환하는 지 알 수 있어서 생략이 가능하다.
+func generator_four(message : String) -> (String, String) -> String {
+    return { (firstName, lastName) -> String in
+        return lastName + firstName + message
+    }
+}
+
+// 생략2.타입 추론 덕에 첫 번째 파라미터가 문자열이고, 두 번째 파라미터가 문자열이라는 것을 알 수 있다.
+// 첫 번째 파라미터를 $0, 두 번째 파라미터를 $1로 바꿔서 쓸 수 있다.
+func generator_five(message : String) -> (String, String) -> String {
+    return {
+        return $0 + $1 + message
+    }
+}
+
+
+// 생략3. 클로저 내부 코드가 한 줄이라면, return 까지도 생략할 수 있다.
+func generator_six(message: String) -> (String, String) -> String {
+  return { $1 + $0 + message }
+}
