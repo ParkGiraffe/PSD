@@ -133,5 +133,27 @@ hello_closure("박", "요셉")
 let hello_optional: ((String, String) -> String)?
 hello_optional?("박", "요셉")
 
+// 클로저를 변수로 정의하고 함수에서 반환할 수도 있는 것처럼, 파라미터로도 받을 수 있다.
+func manipulate(number: Int, using block: Int -> Int) -> Int {
+    return block(number)
+}
+manipulate(number: 10, using: { (number: Int) -> Int in
+    return number * 2
+})
 
+// 생략도 가능하다.
+manipulate(number: 10, using: {
+    $0 * 2
+})
+
+// 만약 함수의 마지막 파라미터가 클로저라면, 괄호와 파라미터 이름마자 생략할 수 있다.
+manipulate(number: 10) {
+    $0 * 2
+}
+
+// sort(), filter()가 위와 같은 예시인데, 함수가 클로저 하나만을 파라미터로 받는다면, 괄호를 아예 쓰지 않아도 된다.
+let number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 9, 102, 123, 34]
+
+let sorted_number = number.sort { $0 < $1 }
+let evens = number.filter { $0 % 2 == 0 }
 
