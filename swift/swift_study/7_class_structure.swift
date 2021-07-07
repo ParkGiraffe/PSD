@@ -62,3 +62,17 @@ class Dog : FourLegsAnimal {
 
 var myDog = Dog()
 print(myDog.numberOfLegs) // 4 <- FourLegsAnimal 클래스에서 상속받은 값 (4)
+
+
+// 클래스는 참조(얕은 복사), 구조체는 복사(깊은 복사)이다.
+var dog1 = Dog()  // dog1은 새로 만들어진 Dog()를 얕은 복사한다.
+var dog2 = dog1   // dog2는 dog1의 Dog()를 공유한다.
+dog1.name = "동동이" // dog1의 이름을 바꾸면 Dog()의 이름이 바뀌기 때문에
+print(dog2.name)  // dog2의 이름을 가져와도 바뀐 이름("동동이")이 출력된다.
+
+var coffee1 = Coffee()   // coffee1은 새로 만들어진 Coffee() 이다.
+var coffee2 = coffee1    // coffee2는 coffee1을 깊은 복사한다.
+coffee1.name = "아이스 아메리카노" // coffee1의 이름을 바꿔도
+coffee2.name             // coffee2는 완전히 별개이기 때문에 이름이 바뀌지 않는다. (nil)이 출력됨.
+
+
