@@ -94,9 +94,32 @@ struct Coffee2 {
     var name: String?
     var size: String?
     
-    init() {
+    init(name: String?, size: String?) { // 생성자도 함수와 마찬가지로 파라미터를 받을 수 있다.
         self.size = "Tall"
     }
 }
 
 
+// 만약 상속받은 클래스라면 생성자에서 상위 클래스의 생성자를 호출해주어야 한다.
+// 생성자의 파라미터가 상위 클래스의 파라미터와 같다면, 'override' 키워드를 붙여 주어야 한다.
+// super.init()은 클래스 속성들의 초기값이 모두 설정된 후에 해야 한다.
+// 그리고나서부터 자신에 대한 self 키워드를 사용할 수 있다.
+
+class Dog3: FourLegsAnimal {
+    var name: String?
+    var age: Int?
+    
+    override init() {
+        self.age = 0 // 초기값 설정
+        super.init() // 상위 클래스 생성자 호출. 여기서부터 'self'접근 가능
+        print(self.simpleDescription()) // super.init()을 하기 전에 self에 접근을 하면 에러가 발생한다.
+    }
+    
+    func simpleDescription() -> String {
+        if let name = self.name {
+            return "\(name)"
+        } else {
+            return "empty"
+        }
+    }
+}
