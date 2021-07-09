@@ -122,4 +122,8 @@ class Dog3: FourLegsAnimal {
             return "empty"
         }
     }
+    
+    deinit { // deinit은 메모리에서 해제된 직후에 호출
+         print("메모리 해제")
+    }
 }
