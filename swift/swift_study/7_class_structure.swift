@@ -127,3 +127,40 @@ class Dog3: FourLegsAnimal {
          print("메모리 해제")
     }
 }
+
+// 3. 속성 (properties)
+// 속성은 크게 두 가지이다. 값을 가지는 속성(stored property)과 계산되는 속성(computed property)이다.
+// 속성이 값 자체를 가지고 있는지, 혹은 어떠한 연산을 수행한 뒤 그 결과를 반환하는 지의 차이.
+// 위에서 사용한 name, age와 같은 속성은 stored property이다.
+// computed property는 get, set을 사용해서 정의할 수 있다.
+
+// set 에서는 새로 설정될 값을 newValue라는 예약어를 통해 접근할 수 있다.
+
+struct Hex {
+    var decimal: Int?
+    var hexString: String? {
+        get {
+            if let decimal = self.decimal {
+                return String(decimal, radix: 16)
+            } else {
+                return nil
+            }
+        }
+        set {
+            if let newValue = newValue {
+                self.decimal = Int(newValue, radix: 16)
+            } else {
+                self.decimal = nil
+            }
+        }
+    }
+}
+
+var hex = Hex()
+hex.decimal = 10
+hex.hexString // "a"
+
+hex.hexString = "b"
+hex.decimal // 11
+// 위 코드에서 hexString은 실제 값을 가지고 있지는 않지만, decimal로부터 값을 받아와 16진수 문자열로 만들어 반환한다.
+// decimal은 stored property, hexString은 computed property이다.
