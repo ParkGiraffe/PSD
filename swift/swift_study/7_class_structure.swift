@@ -164,3 +164,16 @@ hex.hexString = "b"
 hex.decimal // 11
 // 위 코드에서 hexString은 실제 값을 가지고 있지는 않지만, decimal로부터 값을 받아와 16진수 문자열로 만들어 반환한다.
 // decimal은 stored property, hexString은 computed property이다.
+
+// get만 정의할 경우에는 get 키워드를 생략할 수 있다. 이런 속성을 읽기 전용 속성 (read only)이라고 한다.
+struct Hex2 {
+    var decimal: Int?
+    var hexString: String?
+    
+    var hexCode: String? {
+        if let hex = self.hexString {
+            return "0x" + hex
+        }
+        return nil
+    }
+}
