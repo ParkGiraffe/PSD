@@ -177,3 +177,18 @@ struct Hex2 {
         return nil
     }
 }
+
+
+// get, set과 비슷한 willSet, didSet을 이용하면 속성에 값이 지정되기 직전과 직후에 원하는 코드를 실행할 수 있다.
+struct Hex3 {
+    var decimal: Int? {
+        willSet {
+            print("\(self.decimal) -> \(newValue)?")
+        }
+        didSet {
+            print("\(oldValue) -> \(self.decmail)")
+        }
+    }
+}
+// willSet에서는 새로운 값을 newValue로 얻어올 수 있고, didSet에서는 예전 값을 oldValue라는 예약어를 통해 얻어올 수 있다.
+// willSet과 didSet은 일반적으로 어떤 속성의 값이 바뀌었을 때 UI를 업데이트하거나 특정 메서드를 호출하는 등의 역할을 할 때에 사용한다.
