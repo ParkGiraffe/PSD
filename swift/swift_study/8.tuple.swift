@@ -21,3 +21,7 @@ var namedCoffeeInfo = (coffee: "아이스 아메리카노", price: 5100)
 namedCoffeeInfo.coffee // 아이스 아메리카노
 namedCoffeeInfo.price // 5100
 namedCoffeeInfo.price = 5200 // 5200으로 재설정
+
+// 실제로 간단한 자료형을 만들 때에 구조체(struct) 대신 튜플을 사용해서 만들기도 한다.
+var coffeeInfo2: (String, Int)
+var namedCoffeeInfo2: (coffee: String, price: Int)
