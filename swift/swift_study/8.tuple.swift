@@ -25,3 +25,34 @@ namedCoffeeInfo.price = 5200 // 5200으로 재설정
 // 실제로 간단한 자료형을 만들 때에 구조체(struct) 대신 튜플을 사용해서 만들기도 한다.
 var coffeeInfo2: (String, Int)
 var namedCoffeeInfo2: (coffee: String, price: Int)
+
+// 튜플을 조금 응용하여, 여러 변수에 값을 지정할 수 있다.
+let (coffee, price) = ("아이스 아메리카노", 5100)
+coffee // 아이스 아메리카노
+price // 5100
+
+// 튜플이 가진 값을 가지고 변수에 값을 지정할 때, 무시하고 싶은 값이 있다면 '_' 키워드를 사용한다.
+let (_, latteSize, lattePrice) = ("라떼", "Venti", 5500)
+latteSize // Venti
+lattePrice // 5500
+// "라떼"라는 첫 번째 값은 무시한다.
+
+// 튜플을 반환하는 함수를 만들 수 있다.
+// 커비 이름에 맞는 커피 가격 정보를 반환한다. 일치하는 커피 이름이 없다면 nil을 반환한다.
+func coffeInfoFunction(for name: String) -> (name: String, price: Int)? {
+    let coffeeInfoList: [(name: String, price: Int)] = [
+        ("아이스 아메리카노", 5100),
+        ("라떼". 5500)
+    ]
+    for coffeeInfo in coffeInfoList {
+        if coffeeInfo.name == name {
+            return coffeeInfo // 커피 이름과 가격 정보로 구성된 튜플을 반환한다.
+        }
+    }
+    return nil
+}
+coffeeInfoFunction(for: "아이스 아메리카노")?.price // 5100
+coffeeInfoFunction(for: "아메리카노")?.price // nil
+
+let (_, lattePrice2) = coffeeInfoFunction(for: "라떼")!
+lattePrice2 // 5500
