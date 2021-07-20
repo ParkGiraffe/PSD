@@ -15,3 +15,4 @@
 <h4>6. 함수와 클로져</h4>
 <h4>7. class와 struct, 생성자</h4>
 <h4>8. tuple</h4>
+<h4>9. enum</h4>
