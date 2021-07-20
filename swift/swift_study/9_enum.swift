@@ -62,7 +62,6 @@ print(december.rawValue)            // 12
 
 // 반대로 원시값을 가지고 enum을 만들 수 있다.
 let october = Month(rawValue: 10)
-print(october) // Optional(Month.october)
 
 // Month(rawValue:)의 값이 옵셔널인 이유는, Enum에서 정의되지 않은 원시값을 가지고 생성할 경우 nil을 반환하기 때문이다.
 Month(rawValue: 15) // nil
@@ -73,3 +72,32 @@ enum IssueState: String {
     case open = "open"
     case closed = "closed"
 }
+
+// enum은 원시 값을 가지지 않을 수도 있다.
+enum Spoon {0
+    case dirt
+    case bronze
+    case silver
+    case gold
+    
+    func simpleDescription() -> String{
+        switch self {
+        case .dirt:
+            return "흙수저"
+        case .bronze:
+            return "동수저"
+        case .silver:
+            return "은수저"
+        case .gold:
+            return "금수저"
+        }
+    }
+}
+
+// Enum을 예측할 수 있다면 Enum의 이름을 생략할 수도 있다.
+let spoon: Spoon = .gold // 변수에 타입 어노테이션이 있기 때문에 생략 가능 / 원래는 Spoon.gold
+
+func doSomething(with spoon: Spoon) {
+    // ...
+}
+doSomething(with: .silver) // 함수 정의에 타입 어노테이션이 있기 때문에 생략 가능
