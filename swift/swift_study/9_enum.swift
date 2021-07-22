@@ -101,3 +101,16 @@ func doSomething(with spoon: Spoon) {
     // ...
 }
 doSomething(with: .silver) // 함수 정의에 타입 어노테이션이 있기 때문에 생략 가능
+
+
+// 연관 값(Associated Values)을 가지는 Enum
+// Enum은 연관 값을 가질 수 있다.
+// invalidParameter 케이스는 필드 이름과 메시지를 가지도록 정의되었다.
+
+enum NetworkError {
+    case invalidParameter(String, String)
+    case timeout
+}
+let error: NetworkError = .invalidParameter( "email", "이메일 형식이 올바르지 않습니다.")
+
+
