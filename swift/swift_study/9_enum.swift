@@ -114,3 +114,18 @@ enum NetworkError {
 let error: NetworkError = .invalidParameter( "email", "이메일 형식이 올바르지 않습니다.")
 
 
+// 이 값을 꺼내올 수 있는 방법으로는 if-case 또는 switch를 활용하는 것이 있다.
+
+if case .invalidParameter(let field, let message) {
+    print(field) // email
+    print(message) // 이메일 형식이 올바르지 않습니다.
+}
+
+switch error {
+case .invalidParameter(let field, let message) :
+    print(field) // email
+    print(message) // 이메일 형식이 올바르지 않습니다.
+
+default:
+    break
+}
