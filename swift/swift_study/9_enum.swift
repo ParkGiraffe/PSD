@@ -129,3 +129,28 @@ case .invalidParameter(let field, let message) :
 default:
     break
 }
+
+// 옵셔널은 Enum이다.
+public enum Optional<Wrapped> {
+    case none
+    case some(Wrapped)
+}
+// 옵셔널이 왜 "값"과 "없는 값"을 포함하고 있다고 설명했는지, 그리고 "감싸다"라는 표현을 사용했는지 이해하기 위해서 알아야 할 내용이다.
+
+// 옵셔널은 enum이기에 아래와 같은 구문도 사용할 수 있다.
+let age: Int? = 20
+
+switch age {
+case .none: //nil일 경우
+    print("나이 정보가 없습니다.")
+
+case .some(let x) where x < 20:
+    print("청소년")
+
+case .some(let x) where x < 65:
+    print("성인")
+
+default:
+    print("노인")
+}
+
