@@ -1,0 +1,102 @@
+// 1. 변수와 상수
+
+/* 프로그램(앱)의 데이터를 메모리에 저장할 수 있는 기본 단위 */
+
+//변수 (변할수 있는 값을 저장) let
+//상수 (변하지 않는 값을 저장) const
+
+//a라고 하는 변수를 선언
+let a
+
+//a라는 변수에 값을 대입
+a = 100
+
+//100의 값을 저장하고 300이라는 값을 다시 대입
+a = 300
+
+//b라는 상수를 선언과 동시에 숫자값 200을 대입
+const b = 200
+
+//b에다가 새 값을 대입 시도 (오류)
+b = 300
+
+//콘솔에서 변수, 상수 값을 확인
+console.log('a: ',a)
+console.log('b: ',b)
+
+
+// 변수와 상수에 대한 타입은 크게 2개 (원시 / 객체) 로 구분된다
+
+
+// 원시 타입 (Primitive type)
+// string, number, boolean, undefined, null
+
+
+//원시 타입 (primitive type)
+let a  = 'string'    //string
+let b  = 'c'         //string (글자 하나도 string)
+let c  = 100         //number
+let d  = 10.35       //number (소수값도 number)
+let e  = false       //boolean
+let f  = undefined   //undefined
+let g  = null        //null
+
+//원시 타입의 값 복사 예시
+let aValue = 100
+let bValue = aValue
+
+console.log('aValue: ', aValue) //100
+console.log('bValue: ', bValue) //100
+
+//이때 bValue는 aValue의 값을 그대로 복사해서 aValue와 bValue 변수 개별적으로 100의 값을 보관
+
+
+// 객체 타입 (Object type)
+// object, array, function
+
+/* object (객체) */
+let obj = {
+    name: 'Steve',
+    age: 20
+}
+
+/* 
+obj객체의 값들은 key-value 형태로 관리되며 각 객체의 key에 대응되는 value들은 원시타입처럼 값이 할당
+name: 'Steve'는 마치 let name = 'Steve' 처럼 값 할당
+age: 20는 마치 let age = 20 처럼 값 할당
+obj는 name변수와 age변수에 대한 메모리 공간상의 주소값만을 지니고 있음 (obj 객체는 값이 아닌 객체의 값들에 대한 주소)
+*/
+
+let obj2 = obj
+console.log('obj2.name: ',obj2.name) //Steve
+
+//obj2 변수를 선언해 obj객체를 대입하면 obj의 주소값이 obj2에 복사됨 (값이 아닌 주소가 복사, 이를 '참조' 라고 부름)
+//이렇듯 원시 타입처럼 값(value)가 그대로 복사되는 것은 copy-by-value라고 객체 타입은 copy-by-reference라고 한다
+
+//call-by-reference (copy-by-reference): 같은 메모리 공간 주소를 바라보고 있음
+//call-by-value (copy-by-value): 값이 그대로 복사 (서로 다른 메모리 공간 점유)
+
+/* array (배열) */
+let arr  = ['hello','there']
+let arr2 = arr
+
+console.log('arr:', arr[0])   //arr: hello
+console.log('arr2:', arr[1])  //arr2: there
+
+arr2[2] = 'nice to meet you'
+console.log('arr:', arr[2])   //arr: nice to meet you
+
+//배열도 객체와 마찬가지로 메모리 공간을 참조하기 때문에 arr를 arr2에 대입한 이후 동일한 곳을 바라보는것을 확인할 수 있다
+
+/* function (함수) */
+function testFunc(a, b) {
+    return a + b
+}
+
+let funcContainer = testFunc //testFunc 함수를 funcContainer 변수에 대입. initializer 사용 x
+funcContainer(3, 5) //funcContainer 참조 실험
+
+console.log('testFunc: ', testFunc(3, 5))            //testFunc: 8
+console.log('funcContainer: ', funcContainer(3, 5))  //funcContainer: 8
+
+//함수 또한 객체, 배열과 마찬가지로 객체 타입으로 값의 복사는 '참조' 형태로 이루어진다
