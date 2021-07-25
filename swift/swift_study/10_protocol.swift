@@ -1,9 +1,3 @@
-//
-//  MyFirstApp
-//
-//  Created by 박요셉 on 2021/06/26.
-//
-
 // swift api design 참고하기
 import Foundation
 
