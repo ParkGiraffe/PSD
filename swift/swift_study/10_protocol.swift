@@ -43,3 +43,13 @@ sendAnything(mail)
 let feedback = Feedback(from: "op5321@naver.com")
 sendAnything(feedback)
 // sendAnything() 함수는 Sendable 타입을 파라미터로 받는다. Mail와 Feedback은 엄연히 다른 타입이지만, 모두 Sendable을 다르고 있으므로 senAnything()함수에 전달될 수 있다. 그리고 Sendable에서는 send()함수를 정의하고 있기 때문에 호출이 가능하다.
+
+
+// 프로토콜은 또 다른 프로토콜을 따를 수 있다.
+protocol Messagable {
+    var message: String? {get}
+}
+protocol Sendable: Messagable {
+    // ...
+}
+// Sendable은 Messagable을 기본적으로 따르는 프로토콜이다. Sendable을 적용하려면 var message: String? {get}을 정의해주어야 한다.
