@@ -20,6 +20,28 @@ Symbol: A newer feature to the language, symbols are unique identifiers, useful 
 Object: Collections of related data.
 */
 
+// 7.27 보충자료
+// Null : 참조하는 메모리 주소값이 없음. 주소 참조가 없다.
+// Undefined : 아직 정의가 되지 않은 
+function hello(name, age) {
+    console.log('hello : ', name)
+}
+hello() // hello : undefined
+// JS에서는 함수에 들어오는 인자의 타입을 설정하지 않는다.
+// 따라서 undefined 
+// > JS는 유연하면서도 어려운 언어이다. 
+// place-holder variable, argument : 함수의 인자 (위의 name과 age), JS는 매개변수의 타입이 정해지 있지 않으므로 자리만 차지하고 있는 변수라고 칭함.
+hello('jerry', 20) // undefined였던 자리가 특정 변수(string, number)로 채워짐.
+
+const result = hello('joseph', 25) // JS의 함수에서 return하는 값이 없다면? undefined를 리턴한다고 보면 된다. 따라서 result에서 undefined가 들어온다.
+console.log(result) // undefined
+
+//undefined의 특징은 타입과 값이 똑같이 undefined이다.
+//Null도 마찬가지이다.
+
+// 7.27 보충자료
+
+
 //a라고 하는 변수를 선언. 값이 없어도 내용을 추가할 수 있다.
 let a
 
@@ -118,8 +140,8 @@ console.log('arr:', arr[2])   //arr: nice to meet you
 // JS의 배열은 어떤 타입이든 저장할 수 있다. 심지어 다른 타입끼리도 한 배열에 저장할 수 있다.
 let egArr1 = ['example', 10, true]
 
-// let으로 선언된 array일 경우, 배열 자체를 변경할 수 있다.
-// const로 선언된 array일 경우, 배열 자체를 변경할 수 없다. 다만 그 안에 elements들을 수정할 수는 있다.
+// let으로 선언된 array일 경우, 배열 자체를 변경할 수 있다. 
+// const로 선언된 array일 경우, 배열 자체를 변경할 수 없다. (주소를 다시 줄 수 없다.) 다만 그 안에 elements들을 수정할 수는 있다.
 let condiments = ['Ketchup', 'Mustard', 'Soy Sauce', 'Sriracha'];
 const utensils = ['Fork', 'Knife', 'Chopsticks', 'Spork'];
 
