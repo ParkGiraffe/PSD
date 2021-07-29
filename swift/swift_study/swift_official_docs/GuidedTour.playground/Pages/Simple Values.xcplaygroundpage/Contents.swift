@@ -16,23 +16,38 @@ var myVariable = 42
 myVariable = 50
 let myConstant = 42
 
+// let은 상수, var은 변수이다
+let thisIsConstant = 30
+//thisIsConstant = 45 // error
+var thisIsVariable = 50
+thisIsVariable = 70
 //: A constant or variable must have the same type as the value you want to assign to it. However, you don’t always have to write the type explicitly. Providing a value when you create a constant or variable lets the compiler infer its type. In the example above, the compiler infers that `myVariable` is an integer because its initial value is an integer.
 //:
 //: If the initial value doesn’t provide enough information (or if isn’t an initial value), specify the type by writing it after the variable, separated by a colon.
 //:
+// swift 엔진 자체에서 탸입을 추론하기 때문에, 따로 타입을 명시하지 않아도 자동으로 인식한다.
 let implicitInteger = 70
 let implicitDouble = 70.0
 let explicitDouble: Double = 65.8
+
+var varInteger = 70
+//varInteger = 70.5 // error -  변수를 재설정할 때, data type이 같아야만 한다.
+
 
 //: - Experiment:
 //: Create a constant with an explicit type of `Float` and a value of `4`.
 //:
 //: Values are never implicitly converted to another type. If you need to convert a value to a different type, explicitly make an instance of the desired type.
 //:
+
 let label = "The width is "
 let width = 94
 let widthLabel = label + String(width)
+// Int type과 String type 간에는 +operator가 작동하지 않는다.
 
+let one = 1
+let twoPointOne = 2.1
+//let plusThese = one + twoPointOne // Int type + Double type도 불가능.
 //: - Experiment:
 //: Try removing the conversion to `String` from the last line. What error do you get?
 //:
@@ -42,7 +57,7 @@ let apples = 3
 let oranges = 5
 let appleSummary = "I have \(apples) apples."
 let fruitSummary = "I have \(apples + oranges) pieces of fruit."
-
+// \(value) 형식을 이용해서 String type 안에 값을 자동으로 넣을 수 있다.
 //: - Experiment:
 //: Use `\()` to include a floating-point calculation in a string and to include someone’s name in a greeting.
 //:
@@ -53,20 +68,26 @@ I said "I have \(apples) apples."
 And then I said "I have \(apples + oranges) pieces of fruit."
 """
 
+let quotation2 = """
+멀티라인 String일 경우
+자동으로 들여쓰기가 제거 된다.
+"""
+
 //: Create arrays and dictionaries using brackets (`[]`), and access their elements by writing the index or key in brackets. A comma is allowed after the last element.
 //:
 var shoppingList = ["catfish", "water", "tulips"]
-shoppingList[1] = "bottle of water"
+shoppingList[1] = "bottle of water" // 기존 1번에 있던 데이터는 사라지고, 새로운 값으로 재설정.
+shoppingList
 
 var occupations = [
     "Malcolm": "Captain",
     "Kaylee": "Mechanic",
  ]
-occupations["Jayne"] = "Public Relations"
-
+occupations["Jayne"] = "Public Relations" // 추가됨.
+occupations // dictionary는 키값으로 불리기 때문에, 따로 순서의 중요도가 존재하지 않는 것으로 보인다.
 //: Arrays automatically grow as you add elements.
 //:
-shoppingList.append("blue paint")
+shoppingList.append("blue paint") // JS의 push처럼 뒤에 값을 추가.
 print(shoppingList)
 
 //: To create an empty array or dictionary, use the initializer syntax.
@@ -79,7 +100,9 @@ let emptyDictionary: [String: Float] = [:]
 shoppingList = []
 occupations = [:]
 
-
+//shoppingList.append(9) - error : Stirng타입으로 추론된 상태라서 오류가 뜬다. 현업에서 쓸 때는 타입을 명시해서 쓰는 게 좋을 것으로 보인다.
+shoppingList.append("안녕하세요")
+shoppingList
 
 //: See [License](License) for this sample's licensing information.
 //: 
