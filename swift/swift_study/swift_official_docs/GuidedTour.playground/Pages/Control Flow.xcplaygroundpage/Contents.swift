@@ -17,6 +17,8 @@ print(teamScore)
 //:
 //: You can use `if` and `let` together to work with values that might be missing. These values are represented as optionals. An optional value either contains a value or contains `nil` to indicate that a value is missing. Write a question mark (`?`) after the type of a value to mark the value as optional.
 //:
+// optional value는 ?를 이용해서 사용한다.
+
 var optionalString: String? = "Hello"
 print(optionalString == nil)
 
