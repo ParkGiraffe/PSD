@@ -9,19 +9,29 @@ func greet(person: String, day: String) -> String {
 }
 greet(person: "Bob", day: "Tuesday")
 
+func greet1(person: String, lunch: String) -> String {
+    return "Hello \(person), today's lunch special is \(lunch)."
+}
+greet1(person: "Bob", lunch: "Beef Steak")
 //: - Experiment:
 //: Remove the `day` parameter. Add a parameter to include today’s lunch special in the greeting.
 //:
 //: By default, functions use their parameter names as labels for their arguments. Write a custom argument label before the parameter name, or write `_` to use no argument label.
 //:
+// 일반적으로 함수는 argument label을 이용해서 값을 받아온다.
+// 그리고 함수 내에서 argumnet를 parameter label로 치완하여 사용한다.
+// argument label을 따로 붙이고 싶지 않으면 '_' 를 사용한다.
+
+
 func greet(_ person: String, on day: String) -> String {
     return "Hello \(person), today is \(day)."
 }
 greet("John", on: "Wednesday")
+// greet("John", "Saturday") - error 발생. argument label이 지정된 경우, 함수를 사용할 때 argument label을 꼭 써줘야 한다.
 
 //: Use a tuple to make a compound value—for example, to return multiple values from a function. The elements of a tuple can be referred to either by name or by number.
 //:
-func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
+func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) { // tuple을 불러올 때 자료형에 []를 묶어서 불러옴.
     var min = scores[0]
     var max = scores[0]
     var sum = 0
@@ -39,7 +49,13 @@ func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
 }
 let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9])
 print(statistics.sum)
-print(statistics.2)
+print(statistics.0) // min
+print(statistics.1) // sum
+print(statistics.2) // max
+
+// tuple의 요소는, 그 이름 또는 그 순서 referred 함으로써 불러올 수 있다.
+
+
 
 //: Functions can be nested. Nested functions have access to variables that were declared in the outer function. You can use nested functions to organize the code in a function that’s long or complex.
 //:
