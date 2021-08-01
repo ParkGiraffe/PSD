@@ -2,6 +2,8 @@
 //:
 //: Use `func` to declare a function. Call a function by following its name with a list of arguments in parentheses. Use `->` to separate the parameter names and types from the function’s return type.
 //:
+// 'func' 키워드를 통해 함수를 선언하고, 파라미터와 파라미터의 데이터 타입을 설정한다.
+// -> 이후에는 리턴 값의 데이터 타입을 설정하고 함수 구문을 parentheses로 감싼다
 func greet(person: String, day: String) -> String {
     return "Hello \(person), today is \(day)."
 }
