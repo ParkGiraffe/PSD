@@ -68,9 +68,12 @@ func returnFifteen() -> Int {
     return y
 }
 returnFifteen()
+// add() - error : 함수 내에 내장된 함수를 그냥 밖에서 사용할 수는 없다. 무조건 사용된 함수 내에서만 사용!
 
 //: Functions are a first-class type. This means that a function can return another function as its value.
 //:
+// 함수는 first class type으로 함수를 리턴 값으로 줄 수 있다.
+// 함수로 된 리턴 값의 데이터 타입은 아래와 같이 쓴다.
 func makeIncrementer() -> ((Int) -> Int) {
     func addOne(number: Int) -> Int {
         return 1 + number
@@ -78,28 +81,38 @@ func makeIncrementer() -> ((Int) -> Int) {
     return addOne
 }
 var increment = makeIncrementer()
-increment(7)
+increment(7) // makeIncrementer() 안에 있는 addOne 함수가 사용된 것을 알 수 있다.
+// incrementer : 증분기, 자동적으로 하나 또는 지정된 값을 더해주는 장치.
 
 //: A function can take another function as one of its arguments.
 //:
+// 함수는 함수를 arguments로 받아올 수 있다.
+// 받아오는 함수의 자료형은 아래처럼 적는다.
 func hasAnyMatches(list: [Int], condition: (Int) -> Bool) -> Bool {
     for item in list {
-        if condition(item) {
+        if condition(item) { // 리스트 값 중 condition에 하나라도 참이면 참.
             return true
         }
     }
-    return false
+    return false // 모두 거짓이면 거짓.
 }
 func lessThanTen(number: Int) -> Bool {
-    return number < 10
+    return number < 8
 }
 var numbers = [20, 19, 7, 12]
 hasAnyMatches(list: numbers, condition: lessThanTen)
 
 //: Functions are actually a special case of closures: blocks of code that can be called later. The code in a closure has access to things like variables and functions that were available in the scope where the closure was created, even if the closure is in a different scope when it’s executed—you saw an example of this already with nested functions. You can write a closure without a name by surrounding code with braces (`{}`). Use `in` to separate the arguments and return type from the body.
 //:
-numbers.map({ (number: Int) -> Int in
+numbers.map({ (number: Int) -> Int in // anonymous function과 유사해보임. (number) -> {let result /n result = number * 3}
     let result = 3 * number
+    return result
+})
+
+print(numbers) // 위에서 map한 걸 다시 저장하지 않느다면, 값은 소멸하고 원래 값만 남아있다.
+
+numbers.map({ (number: Int) -> Int in
+    let result = number * 0
     return result
 })
 
@@ -108,6 +121,9 @@ numbers.map({ (number: Int) -> Int in
 //:
 //: You have several options for writing closures more concisely. When a closure’s type is already known, such as the callback for a delegate, you can omit the type of its parameters, its return type, or both. Single statement closures implicitly return the value of their only statement.
 //:
+// concisely : 간결하게
+// 자료형이 이미 정해진 경우에는 생략이 가능하다.
+// 한 줄 closure일 경우, 암시적으로 그 한 줄을 return 값으로 한다. 즉, return을 따로 지정해줄 필요가 없다.
 let mappedNumbers = numbers.map({ number in 3 * number })
 print(mappedNumbers)
 
@@ -117,5 +133,34 @@ let sortedNumbers = numbers.sorted { $0 > $1 }
 print(sortedNumbers)
 
 
+
+// stackoverflow 추가문 ******
+let ints = [4, 6, 8, 1, 3]
+
+// 완전한 문장
+func sortBackwards(val1: Int, val2: Int) -> Bool {
+   print("val1: \(val1) - val2: \(val2)" )
+   return val1 > val2
+}
+var sortedInts = ints.sorted(by: sortBackwards)
+
+// +함수명 생략
+ints.sorted{(val1: Int, val2: Int) -> Bool in
+   return val1 > val2
+}
+
+// +자료형 생략
+ints.sorted{val1, val2 in
+   return val1 > val2
+}
+
+// +single statement
+var sortedInts2 = ints.sorted{val1, val2 in val1 > val2}
+print(sortedInts2)
+
+// swift automatically provides shorthand argument names to inline closures, which can be used to refer to the values of the closure’s arguments by the names $0, $1, $2, and so on.
+// so, in example, val1 can be replaced by $0 and val2 can be replaced by $2
+// 따라서 위의 내용이 적용된다.
+print(numbers.sorted{$0 > $1})
 
 //: [Previous](@previous) | [Next](@next)
