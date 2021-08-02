@@ -25,6 +25,7 @@ print(shape.exampleNum)
 
 //: This version of the `Shape` class is missing something important: an initializer to set up the class when an instance is created. Use `init` to create one.
 //:
+// init을 통해서, instance의 initializer의 값을 받아올 때 어떻게 받아올 지를 설정.
 class NamedShape {
     var numberOfSides: Int = 0
     var name: String
