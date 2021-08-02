@@ -4,8 +4,12 @@
 //:
 class Shape {
     var numberOfSides = 0
+    let exampleNum = 10
     func simpleDescription() -> String {
         return "A shape with \(numberOfSides) sides."
+    }
+    func printExampleNum() -> String {
+        return "example number is \(exampleNum)"
     }
 }
 
@@ -14,9 +18,10 @@ class Shape {
 //:
 //: Create an instance of a class by putting parentheses after the class name. Use dot syntax to access the properties and methods of the instance.
 //:
-var shape = Shape()
-shape.numberOfSides = 7
+var shape = Shape() // 인스턴스 생성
+shape.numberOfSides = 7 // .블라블라 를 통해서 properties 와 methods에 접근.
 var shapeDescription = shape.simpleDescription()
+print(shape.exampleNum)
 
 //: This version of the `Shape` class is missing something important: an initializer to set up the class when an instance is created. Use `init` to create one.
 //:
