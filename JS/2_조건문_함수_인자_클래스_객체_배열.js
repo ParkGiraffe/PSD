@@ -191,7 +191,7 @@ let obj = {
 	//method
 	eat() {
         console.log('Now eat something')
-	}
+	},
 
 	sleep() {
         console.log('Now sleep')
@@ -242,6 +242,7 @@ arrLiteral3 // [1, 2, 3, 4, 5]
 const arr1 = [1,2,3,4,5,6,7]
 const find1 = arr1.find(e => e > 3) // single value만 return
 // 특정 조건에 부합하는, 정확한 하나의 값만 필요로 할 때 사용.
+// 조건에 맞는 거 중 가장 먼저 나오는 것이 나온다.
 
 console.log('arr1 : ', arr1) //1,2,3,4,5,6,7
 console.log('find : ', find1) //4
