@@ -1,6 +1,6 @@
 // 조건문
-// 참(true)이 되는 경우 : -1, 1, 10, 100, 'hello', 'false'
-// 거짓(false)이 되는 경우 : 0, -0, '', undefined, null
+// 참(true)이 되는 경우 : -1, 1, 10, 100, 'hello', 'false', true
+// 거짓(false)이 되는 경우 : 0, -0, '', undefined, null, false
 // js 기준으로 0은 거짓, -0도 거짓 -- 양수나 음수나 0으로 되는 값은 거짓
 
 const compare = -1
@@ -10,6 +10,8 @@ if (compare) { //참
 }
 
 //3항 연산자 (참과 거짓을 둘 다 확인하는 경우, 결과값 처리가 두 개가 모두 되어야되는 경우)
+//if 문을 간소화 하기 위해서 사용
+//? 전까지는 조건을 써주고 조건이 참이되는 경우 ? 바로 다음에 오는 게 '참' : 뒤에가 '거짓'
 compare ? console.log('true') : console.log('false')  //true
 
 
@@ -27,6 +29,11 @@ compare && console.log('true') // 전건이 참이여야 후건이 실행되기 
 
 // function in-depth
 // 매개변수 -> 패래미터(parameter), argument(인자), passed variable(전달값), place-holder(undefined)
+// 함수 선언 (정의) 시점에는 인자의 타입은 any (그 어떤 타입의 값도 들어올 수 있는 상태)
+function func1(name, age) {
+    console.log('hello: ', name) // 아무런 값을 전달하지 않고 호출한다면, undefined가 됨.
+}
+
 // default parameter
 function goodBye(name = 'Joseph', age = 22) {
     console.log('goodBye : ', name)
@@ -36,9 +43,42 @@ goodBye('Jerry', 30) // goodBye : Jerry
 goodBye() // goodBye : Joseph
 // 디폴트 값이 설정되었을 경우, Joseph이라는 값이 먼저 대입이 되고, Jerry가 override되는 매커니즘이다.
 
+//리턴하지 않는 함수
+// 위의 goodBye 함수는 리턴이 없다.
+const result = goodBye('yosep', 20) // 리턴받는 값이 없는 함수
+console.log('result : '. result) //result: undefined
 
-// rest parameter (개수에 제한이 없는 인자를 선언)
+
+
+
+// rest parameter (무한 인자. 개수에 제한이 없는 인자를 선언)
+// 간혹 함수에서 인자의 개수를 미리 정하기 어려운 경우가 있다. 그때 사용한다.
 // react에서 ... <-전개 연산자 (spread operator)
+
+function restFunc(...args) {
+
+	//args.length
+	console.log('length of args: ', args.length)
+	console.log('...args: ', args)
+}
+  
+restFunc(1, 2, 3, 4, 5, 'hello', 'there', 'nice', 'to', 'meet', 'you')
+restFunc() //빈 배열
+
+function printAll(...names) {
+	//iterate (반복 열거)
+	for (let i=0; i < names.length; i++) {
+		console.log('loop index: ', i)
+		console.log('loop value: ', names[i])
+	}
+	console.log('names : ', names)
+}
+
+//실제 현업에서는 argument (인자) 에 대한 타입 그리고 placeholder 개수는 명확한게 좋다
+printAll(['hello', 'there', 'nice', 'to', 'meet', 'you'], 300, 500, 'hello', 'bye', 5000)
+
+/////
+
 function printAll(names) {
     console.log('names : ', names)
 }
@@ -56,7 +96,11 @@ printAll2('hello', 'there', 'nice', [200, 100, 10]) // place-holder가 여러 �
 // 최대한 함수를 명확하게 만드는 것이 좋다.
 
 
+
+
 // named function, anonymous function
+
+// 이건 이름이 있는 함수.
 function helloWorld(a,b) {
     return a+b
 }
@@ -68,8 +112,8 @@ function helloWorld(a,b) {
 // 3. 다른 함수에서 리턴될 수 있음
 
 // anonymous function ==> 대표적인 게 arrow function (화살표 함수)
-const anom = function() {
-    return 100
+const anom = function(a, b) {
+    return a + b
 }
 
 const anom2 = () => {return 100}
@@ -95,6 +139,10 @@ function functionHoist2() {
 
 // 일반적으로 객체는 class의 파생물이라고 본다. class의 본을 떠서 메모리 공간에 올려진 실행 인스턴스.
 // class를 이루는 구성요소 -> 멤버변수 + 메소드 (함수)
+// - 멤버변수: property
+// - 객체함수: method
+
+
 
 class Human {
     //생성자
@@ -135,6 +183,21 @@ const _human1 = {
 
 }
 
+let obj = {
+	//property
+	name: 'Hello',
+	age: 20,
+
+	//method
+	eat() {
+        console.log('Now eat something')
+	}
+
+	sleep() {
+        console.log('Now sleep')
+	}
+
+}
 
 
 // array literal
@@ -154,6 +217,7 @@ arrLiteral1 // [1,2,3,4,6]
 // reverse()
 
 // sort() 정렬
+
 
 const arrLiteral2 = [1, 2, 3, 4, 5] 
 // shift(), unshift() -> 배열의 제일 앞에 있는 요소를 건드린다.
@@ -196,7 +260,7 @@ mapped // [2,3,4,5,6]
 // 새로 만들기 때문에 기존의 배열에 영향을 주지 않는다.
 
 const array1 = [1, 2, 3]
-const array2 = [4, 5, 3]
+const array2 = [4, 5, 6]
 const concatenated = arra1.concat(array2)
 concatenated // 1, 2, 3, 4, 5, 6
 
