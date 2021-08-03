@@ -180,3 +180,168 @@ const reduced = objArr.reduce((a, b) => a.score + b.score) // 오류 발생.
 //객체가 담긴 배열에서 reduce를 행할 때는 최종적으로 reduce 하기 좋은 형태로 map(매핑)을 수행하고 reduce를 이어서 진행한다.
 const reduced1 = objArr.map(e => e.score).reduce((a, b) => a + b)
 // NaN => not a number (숫자 값이 아닙니다.)
+
+
+
+//Jerry 쌤의 메모
+  //array
+  [1, 2, 3].length  //간소화 표기 -> 배열 리터럴
+  // [1, 2, 3].sort()
+  // [1, 2, 3].map()
+​
+  //standard array
+  const arr = [2, 1, 5, 3, 4]
+​
+  //map (매핑)  (***)
+  //배열을 매핑한 새로운 배열을 리턴한다
+​
+  const mapped = arr.map(e => e * 3)
+  console.log('mapped: ', mapped)
+  console.log('arr: ', arr)
+​
+  //(***)
+  // arr.push(6)
+  // arr.pop()
+  console.log('arr: ', arr)
+​
+  //shift, unshift
+  // arr.shift()
+  arr.unshift(10)
+  console.log('arr: ', arr)
+​
+  //인자 자리에 arrow function을 받는다
+  const sorted = arr.sort((a, b) => a - b)   //오름차순
+  const sorted2 = arr.sort((a, b) => b - a)  //내림차순
+  console.log('sorted: ', sorted)
+  console.log('sorted2: ', sorted2)
+​
+  //filter (***)
+  const filtered = arr.filter(e => e > 1)    //간접 필터링
+  const filtered2 = arr.filter(e => e !== 1) //직접 필터링
+  console.log('filtered: ', filtered)
+  console.log('filtered2: ', filtered2)
+​
+  //find
+  const found = arr.find(e => e > 1)
+  console.log('found: ', found)
+  
+  //join
+  const joined = arr.join('-')
+  console.log('joined: ', joined)
+​
+  //split
+  const str = 'this is a string'     //string literal
+  const splitArr = str.split(' ')      //split with token (tokenizer)
+  console.log('splitArr: ', splitArr)
+  const joinedArr = splitArr.join(' ')
+  console.log('joinedArr: ', joinedArr)
+​
+  //slice (뜨다, 발췌하다)
+  //특징: 얘도 map, filter처럼 새로운 배열을 리턴한다
+  //특징: end범위가 -1 까지 slice된다 (end값 바로 직전까지 slice된다)
+​
+  const target = [1, 2, 3, 4, 5, 6, 7, 8] //4, 5, 6, 7
+  const sliced = target.slice(3, 7)
+  console.log('sliced: ', sliced)
+  console.log('target: ', target)
+​
+  //splice (지우다, 범위 지정 삭제, 삭제후 신규 값 추가)
+  //특징: 기존 배열을 조작
+​
+  // target.splice(2) //deleteCount 별도 지정 안하면 start 이후 모두 삭제
+  // target.splice(2, 3) -> 국소 제거, 국소 추가
+  target.splice(2, 3, 100, 200, 300, 400, 500, 600)
+  console.log('target: ', target)
+​
+  //reduce (***)
+  // const reduced = target.reduce((a, b) => a + b)
+  // console.log('reduced: ', reduced)
+​
+  
+  /* array in-depth */
+  /* spread operator (전개 연산자) */
+  const spreadTarget = [100, 200, 300, 400, 500]
+  const spread = [10, 20, 30, ...spreadTarget, 600, 700]  //array literal 
+  console.log('spread: ', spread)
+​
+  const obj = {
+    name: 'Joseph',
+    city: 'Suncheon',
+    age: 22,
+  }
+​
+  const spreadObj = {
+    ...obj, //원본 값을 전개하고
+    //그 다음에 수정하고자 하는 속성을 아래 기술
+    name: 'Jerry',
+    age: 30
+  }
+  console.log('spreadObj: ', spreadObj)
+​
+  /* de-construct (비구조화) */
+​
+  //construct (구조화)
+  let structuredObj = {
+    name: 'Holiday',
+    age: 20,
+    city: 'Seoul'
+  }
+​
+  //기존 구조에서 비구조화 문법을 통해서 특정 값을 추출하기 위해 사용
+  //비구조화 특징: 객체 혹은 배열 비구조하할때 전개연산은 맨 마지막에서 진행한다 (빈 객체 혹은 빈 배열 리턴)
+​
+  const { name, age, city, ...strRest } = structuredObj
+  
+  console.log('structuredObj.name: ', structuredObj.name)
+  console.log('name: ', name)
+  console.log('age: ', age)
+  // console.log('city: ', city)
+  console.log('strRest: ', strRest)
+​
+  //const [...rest] = target
+  const [a, b,  ,d, e, ...rest] = spreadTarget
+​
+  // console.log('first: ', first)
+  // console.log('...rest: ', rest[4])
+  // console.log('target: ', target[4])
+  
+  console.log('rest: ', rest)
+  console.log('d: ', d)
+  console.log('e: ', e)
+​
+  // function rest(...rest) {
+​
+  // }
+​
+​
+  //응용
+  let objArr = [
+    {
+      name: 'Jerry',
+      age: 30,
+      city: 'Seoul',
+      country: 'Korea',
+      score: 80
+    },
+    {
+      name: 'Steve',
+      age: 25,
+      city: 'Incheon',
+      country: 'Korea',
+      score: 70
+    },
+    {
+      name: 'Berry',
+      age: 25,
+      city: 'Busan',
+      country: 'Korea',
+      score: 100
+    }
+  ]
+​
+  //객체가 담긴 배열에서 reduce를 행할때는 최종적으로 reduce 하기 좋은 형태로 map (매핑) 을 수행하고 reduce를 이어서 진행한다. 
+  const reduced = objArr.map(e => e.score).reduce((a, b) => a + b)
+  console.log('reduced: ', reduced)
+​
+  //NaN => Not a Number (숫자 값이 아닙니다)
+​
