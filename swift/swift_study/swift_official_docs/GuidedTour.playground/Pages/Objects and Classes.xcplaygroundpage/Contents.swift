@@ -147,12 +147,12 @@ print(triangle.sideLength)
 class TriangleAndSquare {
     var triangle: EquilateralTriangle {
         willSet {
-            square.sideLength = newValue.sideLength
+            square.sideLength = newValue.sideLength // triangle.sideLength가 바뀌면, square.sideLengtheh 변경
         }
     }
     var square: Square {
         willSet {
-            triangle.sideLength = newValue.sideLength
+            triangle.sideLength = newValue.sideLength // square.sideLengtheh가 바뀌면,  triangle.sideLength 변경
         }
     }
     init(size: Double, name: String) {
@@ -163,14 +163,14 @@ class TriangleAndSquare {
 var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
 print(triangleAndSquare.square.sideLength)
 print(triangleAndSquare.triangle.sideLength)
-triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
-print(triangleAndSquare.triangle.sideLength)
+triangleAndSquare.square = Square(sideLength: 50, name: "larger square") //square.sideLength가 50으로 변경되어서
+print(triangleAndSquare.triangle.sideLength) //square에 지정된 willSet에 따라, triangle.sideLength도 50으로 변경됨.
 
 //: When working with optional values, you can write `?` before operations like methods, properties, and subscripting. If the value before the `?` is `nil`, everything after the `?` is ignored and the value of the whole expression is `nil`. Otherwise, the optional value is unwrapped, and everything after the `?` acts on the unwrapped value. In both cases, the value of the whole expression is an optional value.
 //:
 let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
-let sideLength = optionalSquare?.sideLength
-
+let sideLength = optionalSquare?.sideLength // 만약 인스턴스의 class에 ?(optional value)가 붙었을 경우, 값에 접근할 때도 ?를 써야 한다. 안 쓰면 오류가 뜸.
+print(sideLength)
 
 
 //: [Previous](@previous) | [Next](@next)
