@@ -2,8 +2,9 @@
 //:
 //: Use `enum` to create an enumeration. Like classes and all other named types, enumerations can have methods associated with them.
 //:
-enum Rank: Int {
-    case ace = 1
+enum Rank: Int { // Int를 원시값(rawValue)을 가지도록 정의
+    // 0을 기점으로, 그 이후에 나오는 케이스들은 자동으로 1씩 더해져서 rawValue를 가지는 것으로 보인다.
+    case ace = 1 // 다만 원한다면, 초기값을 임의로 지정할 수 있다.
     case two, three, four, five, six, seven, eight, nine, ten
     case jack, queen, king
 
@@ -22,7 +23,7 @@ enum Rank: Int {
         }
     }
 }
-let ace = Rank.ace
+let ace = Rank.jack
 let aceRawValue = ace.rawValue
 
 //: - Experiment:
