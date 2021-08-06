@@ -2,6 +2,9 @@
 //:
 //: Use `protocol` to declare a protocol.
 //:
+// 1. Protocol
+// 프로토콜은 인터페이스이다. 최소한으로 가져야 할 속성이나 메서드를 정의한다. 구현은 하지않고 정의만 한다.
+
 protocol ExampleProtocol {
      var simpleDescription: String { get }
      mutating func adjust()
@@ -9,6 +12,8 @@ protocol ExampleProtocol {
 
 //: Classes, enumerations, and structs can all adopt protocols.
 //:
+
+
 class SimpleClass: ExampleProtocol {
      var simpleDescription: String = "A very simple class."
      var anotherProperty: Int = 69105
