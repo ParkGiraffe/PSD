@@ -96,7 +96,7 @@ var protocolValue: ExampleProtocol = a // protocol type임에도 불구하고 Si
 print(protocolValue.simpleDescription)
 protocolValue.adjust()
 print(protocolValue.simpleDescription)
- print(protocolValue.anotherProperty)  // Uncomment to see the error
+// print(protocolValue.anotherProperty)  // Uncomment to see the error
 // error 메시지를 보면, SimpleClass로 지정됐음에도 불구하고, 컴파일러에서는 ExampleProtocol이라고 칭함.
 // 실제로 anotherProperty는 SimpleClass에 지정된 property임에도 불구하고 에러가 발생한다.
 // 요악하자면 포로토콜로 접근하는 경우, 포로토콜 내에서 지정된 메서드와 속성 만을 가져와서 이후에 지정된 클래스나 구조체를 통해 값을 전달받는 원리이다. 포로토콜 외의 메서드와 속성은 가져오지 않는다.
