@@ -2,7 +2,7 @@
 //:
 //: You represent errors using any type that adopts the `Error` protocol.
 //:
-// 따로 Error 프로토콜이 있어서, 이걸로 에러처리를 한다.
+// 따로 Error 프로토콜이 있어서, 이걸로 에러처리를 한다
 enum PrinterError: Error {
     case outOfPaper
     case noToner
@@ -18,6 +18,8 @@ func send(job: Int, toPrinter printerName: String) throws -> String {
     return "Job sent"
 }
 
+
+
 //: There are several ways to handle errors. One way is to use `do`-`catch`. Inside the `do` block, you mark code that can throw an error by writing `try` in front of it. Inside the `catch` block, the error is automatically given the name `error` unless you give it a different name.
 //:
 do {
@@ -27,6 +29,12 @@ do {
     print(error)
 }
 
+do {
+    let printerResponse = try send(job: 1040, toPrinter: "Never Has Toner")
+    print(printerResponse)
+} catch {
+    print(error) // 따로 변수 설정 없이, error를 적으면 캐치한 에러를 자동으로 반환한다.
+}
 //: - Experiment:
 //: Change the printer name to `"Never Has Toner"`, so that the `send(job:toPrinter:)` function throws an error.
 //:
