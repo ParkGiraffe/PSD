@@ -2,6 +2,7 @@
 //:
 //: You represent errors using any type that adopts the `Error` protocol.
 //:
+// 따로 Error 프로토콜이 있어서, 이걸로 에러처리를 한다.
 enum PrinterError: Error {
     case outOfPaper
     case noToner
