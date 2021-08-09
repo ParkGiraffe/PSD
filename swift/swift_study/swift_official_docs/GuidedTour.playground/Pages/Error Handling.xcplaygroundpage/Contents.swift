@@ -14,6 +14,8 @@ enum PrinterError: Error {
 func send(job: Int, toPrinter printerName: String) throws -> String {
     if printerName == "Never Has Toner" {
         throw PrinterError.noToner
+    } else if printerName == "Printer On Fire" {
+        throw PrinterError.onFire
     }
     return "Job sent"
 }
@@ -41,7 +43,7 @@ do {
 //: You can provide multiple `catch` blocks that handle specific errors. You write a pattern after `catch` just as you do after `case` in a switch.
 //:
 do {
-    let printerResponse = try send(job: 1440, toPrinter: "Gutenberg")
+    let printerResponse = try send(job: 1440, toPrinter: "Printer On Fire")
     print(printerResponse)
 } catch PrinterError.onFire {
     print("I'll just put this over here, with the rest of the fire.")
@@ -51,13 +53,29 @@ do {
     print(error)
 }
 
+do {
+    let printerResponse = try send(job: 1440, toPrinter: "Never Has Toner")
+    print(printerResponse)
+} catch PrinterError.onFire {
+    print("I'll just put this over here, with the rest of the fire.")
+} catch let printerError as PrinterError {
+    print("Printer error: \(printerError).")
+} catch {
+    print(error)
+}
+
+
 //: - Experiment:
 //: Add code to throw an error inside the `do` block. What kind of error do you need to throw so that the error is handled by the first `catch` block? What about the second and third blocks?
 //:
 //: Another way to handle errors is to use `try?` to convert the result to an optional. If the function throws an error, the specific error is discarded and the result is `nil`. Otherwise, the result is an optional containing the value that the function returned.
 //:
+// try? 를 사용하면, error시 nil을, 다른 값은 옵셔널을 적용해서 return한다.
 let printerSuccess = try? send(job: 1884, toPrinter: "Mergenthaler")
 let printerFailure = try? send(job: 1885, toPrinter: "Never Has Toner")
+
+print(printerSuccess)
+print(printerFailure)
 
 //: Use `defer` to write a block of code that’s executed after all other code in the function, just before the function returns. The code is executed regardless of whether the function throws an error. You can use `defer` to write setup and cleanup code next to each other, even though they need to be executed at different times.
 //:
