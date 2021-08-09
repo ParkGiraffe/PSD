@@ -84,13 +84,23 @@ let fridgeContent = ["milk", "eggs", "leftovers"]
 
 func fridgeContains(_ food: String) -> Bool {
     fridgeIsOpen = true
+    // defer 블록의 특징
+    // 함수 종료 직전에 실행된다.
+    // defuer 블록이 읽히기 전에 종료되면 실행되지 않는다.
+    // 가장 마지막에 호출된 defer블록부터 역순으로 호출된다.
+    // defer블록을 중첨으로 사용할 때, 바깥쪽 블록부터 호출된다.
+    defer {
+        fridgeIsOpen = true
+    }
+    
     defer {
         fridgeIsOpen = false
     }
 
-    let result = fridgeContent.contains(food)
+    let result = fridgeContent.contains(food) // array에서 contains 함수를 쓰면, 해당 array에 동일한 값이 있는지 체크한 후 bool값을 반환하는 것으로 보인다.
     return result
 }
+fridgeContains("eggs")
 fridgeContains("banana")
 print(fridgeIsOpen)
 
