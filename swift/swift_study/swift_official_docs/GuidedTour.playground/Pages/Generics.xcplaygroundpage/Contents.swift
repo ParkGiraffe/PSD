@@ -2,6 +2,8 @@
 //:
 //: Write a name inside angle brackets to make a generic function or type.
 //:
+// generic : 포괄적인, 통칭의
+
 func makeArray<Item>(repeating item: Item, numberOfTimes: Int) -> [Item] {
     var result: [Item] = []
     for _ in 0..<numberOfTimes {
