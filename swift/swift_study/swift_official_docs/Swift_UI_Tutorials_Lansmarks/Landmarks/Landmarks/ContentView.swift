@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View { // View protocol
+struct ContentView: View { // View protocol.
     // describe the view's content and layout.
     var body: some View {
         Text("Hello, ParkGiraffe")
