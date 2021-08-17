@@ -14,6 +14,10 @@ struct ContentView: View { // View protocol.
         VStack {
             MapView()
                 .frame(height: 300) // 따로 높이 지정을 안 하면 최대한 가능한 한 많은 면적을 차지하려고 함.
+                .ignoresSafeArea(edges: .top) // 위의 노치 바 까지 적용하게 해줌.
+            CircleImage()
+                .offset(y: -130)
+                .padding(.bottom, -130)
             VStack(alignment: .leading) { //vertical
                 
                 // describe the view's content and layout.
@@ -30,8 +34,20 @@ struct ContentView: View { // View protocol.
                     Text("Califonia")
                         .font(.subheadline)
                 }
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                // Stack 단위로 그 안에 포함된 Text의 폰트 등 스타일을 일괄로 적용이 가능한 것으로 보인다.
+                // When you apply a modifier to a layout view like a stack, SwiftUI applies the modifier to all the elements contained in the group.
+                
+                Divider() // 구분을 위한 띄기 + 구분선
+                
+                Text("About Turtle Rock")
+                    .font(.title2)
+                Text("Descriptive text goes here.")
             }
             .padding()
+            
+            Spacer()
         }
     }
 }
