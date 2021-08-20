@@ -18,6 +18,7 @@ struct LandmarksRow: View {
             Text(landmark.name)
             
             Spacer()
+            
         }
     }
 }
