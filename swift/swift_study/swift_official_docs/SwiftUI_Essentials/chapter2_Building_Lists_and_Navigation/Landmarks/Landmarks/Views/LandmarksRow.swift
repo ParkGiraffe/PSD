@@ -25,6 +25,10 @@ struct LandmarksRow: View {
 
 struct LandmarksRow_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarksRow(landmark: landmarks[0])
+        Group { // Group is a container for grouping view content. Xcode renders the group’s child views as separate previews in the canvas.
+            LandmarksRow(landmark: landmarks[0])
+            LandmarksRow(landmark: landmarks[1])
+        }
+        .previewLayout(.fixed(width: 300, height: 70))
     }
 }
