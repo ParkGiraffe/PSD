@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct Landmark: Hashable, Codable {
+struct Landmark: Hashable, Codable, Identifiable {
     // Adding Codable conformance makes it easier to load data into the structure from the data file, which you’ll do later in this section.
     
+    // Identifiable protocool require 'id'
     var id: Int
     var name: String
     var park: String
