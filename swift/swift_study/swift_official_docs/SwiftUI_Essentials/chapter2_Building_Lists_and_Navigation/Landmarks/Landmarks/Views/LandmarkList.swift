@@ -9,7 +9,10 @@ import SwiftUI
 
 struct LandmarkList: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            LandmarksRow(landmark: landmarks[0])
+            LandmarksRow(landmark: landmarks[1])
+        }
     }
 }
 
