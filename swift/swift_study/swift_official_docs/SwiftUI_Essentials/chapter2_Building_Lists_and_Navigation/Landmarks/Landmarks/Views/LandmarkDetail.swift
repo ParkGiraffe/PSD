@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+    var landmark: Landmark
+    
     var body: some View {
-        VStack {
-            MapView()
+        ScrollView {
+            MapView(coordinate: landmark.locationCoordinate)
                 .frame(height: 300) // 따로 높이 지정을 안 하면 최대한 가능한 한 많은 면적을 차지하려고 함.
                 .ignoresSafeArea(edges: .top) // 위의 노치 바 까지 적용하게 해줌.
-            CircleImage()
+            CircleImage(image: landmark.image)
                 .offset(y: -130)
                 .padding(.bottom, -130)
             VStack(alignment: .leading) { //vertical
@@ -23,13 +25,13 @@ struct LandmarkDetail: View {
                 // .font, .padding,.foregroundColor 같은 것들을 Modifier라고 한다.
                 // 오른쪽에 뜨는 Xcode modifier을 통해서 수정할 수도 있다.
                 // Text를 cmd + 클릭해서, 'Show SwiftUI Inspector을 선택해도 된다.
-                Text("Turtle Rock")
+                Text(landmark.name)
                     .font(.title)// title : This applies the system font to the text so that it responds correctly to the user's preferred font sizes and settings.
                 HStack { // horizontal
-                    Text("Joshua Tree National Park")
+                    Text(landmark.park)
                         .font(.subheadline)
                     Spacer() // A spacer expands to make its containing view use all of the space of its parent view, instead of having its size defined only by its contents.
-                    Text("Califonia")
+                    Text(landmark.state)
                         .font(.subheadline)
                 }
                 .font(.subheadline)
@@ -39,19 +41,19 @@ struct LandmarkDetail: View {
                 
                 Divider() // 구분을 위한 띄기 + 구분선
                 
-                Text("About Turtle Rock")
+                Text("About \(landmark.name)")
                     .font(.title2)
-                Text("Descriptive text goes here.")
+                Text(landmark.description)
             }
             .padding()
-            
-            Spacer()
         }
+        .navigationTitle(landmark.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct LandmarkDetail_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkDetail()
+        LandmarkDetail(landmark: landmarks[0])
     }
 }
