@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct LandmarkList: View {
-    @State private var showFavoritesOnly = true
+    @State private var showFavoritesOnly = false
     // create state as private, because state property hold information that's specific to a view and its subviews.
+    // false로 지정하면 초기 실행시 기본 값이 false, true면 기본 값이 true로 된다.
     
     var filteredLandmsrks: [Landmark] {
         landmarks.filter { landmark in
@@ -20,6 +21,10 @@ struct LandmarkList: View {
     var body: some View {
         NavigationView {
             List {
+                Toggle(isOn: $showFavoritesOnly) { // You use the $ prefix to access a binding to a state variable, or one of its properties.
+                    Text("Favorite Only")
+                }
+                
                 ForEach(filteredLandmsrks) { landmark in
                     // list에 대한 추가 조사 필요
                     NavigationLink(
