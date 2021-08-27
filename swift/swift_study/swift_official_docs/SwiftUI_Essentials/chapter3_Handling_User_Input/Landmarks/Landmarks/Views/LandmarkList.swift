@@ -19,11 +19,13 @@ struct LandmarkList: View {
     
     var body: some View {
         NavigationView {
-            List(filteredLandmsrks) { landmark in
-                // list에 대한 추가 조사 필요
-                NavigationLink(
-                    destination: LandmarkDetail(landmark: landmark)) {
-                    LandmarksRow(landmark: landmark)
+            List {
+                ForEach(filteredLandmsrks) { landmark in
+                    // list에 대한 추가 조사 필요
+                    NavigationLink(
+                        destination: LandmarkDetail(landmark: landmark)) {
+                        LandmarksRow(landmark: landmark)
+                    }
                 }
             }
             .navigationTitle("Landmarks")
