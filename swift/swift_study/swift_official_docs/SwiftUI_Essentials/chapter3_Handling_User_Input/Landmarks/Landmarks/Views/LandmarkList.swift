@@ -10,7 +10,7 @@ import SwiftUI
 struct LandmarkList: View {
     @State private var showFavoritesOnly = false
     // create state as private, because state property hold information that's specific to a view and its subviews.
-    // false로 지정하면 초기 실행시 기본 값이 false, true면 기본 값이 true로 된다.
+    // false로 지정하면 초기 실행시 기본 값이 false, true면 기본 값이 true로 된다..
     
     var filteredLandmsrks: [Landmark] {
         landmarks.filter { landmark in
