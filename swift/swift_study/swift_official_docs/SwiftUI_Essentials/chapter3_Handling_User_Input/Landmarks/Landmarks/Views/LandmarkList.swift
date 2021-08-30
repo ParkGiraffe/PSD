@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    
+    @EnvironmentObject var modelData: ModelData
+    // The modelData property gets its value automatically, as long as the environmentObject(_:) modifier has been applied to a parent.
+    
     @State private var showFavoritesOnly = false
     // create state as private, because state property hold information that's specific to a view and its subviews.
     // false로 지정하면 초기 실행시 기본 값이 false, true면 기본 값이 true로 된다..
     
-    var filteredLandmsrks: [Landmark] {
-        landmarks.filter { landmark in
+    var filteredLandmarks: [Landmark] {
+        modelData.landmarks.filter { landmark in
             (!showFavoritesOnly || landmark.isFavorite)
         }
     }
@@ -25,7 +29,7 @@ struct LandmarkList: View {
                     Text("Favorite Only")
                 }
                 
-                ForEach(filteredLandmsrks) { landmark in
+                ForEach(filteredLandmarks) { landmark in
                     // list에 대한 추가 조사 필요
                     NavigationLink(
                         destination: LandmarkDetail(landmark: landmark)) {
