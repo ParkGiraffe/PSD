@@ -11,6 +11,7 @@ struct LandmarkList: View {
     
     @EnvironmentObject var modelData: ModelData
     // The modelData property gets its value automatically, as long as the environmentObject(_:) modifier has been applied to a parent.
+    // @ attribute를 통해 상위 뷰에서 enviromentObject를 전달해주는 것을 받는다.
     
     @State private var showFavoritesOnly = false
     // create state as private, because state property hold information that's specific to a view and its subviews.

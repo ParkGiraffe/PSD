@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+    @EnvironmentObject var modelData: ModelData
     var landmark: Landmark
+    
+    var landmarkIndex: Int {
+        modelData.landmarks.firstIndex(where: {$0.id == landmark.id})!
+    }
     
     var body: some View {
         ScrollView {
@@ -25,8 +30,12 @@ struct LandmarkDetail: View {
                 // .font, .padding,.foregroundColor 같은 것들을 Modifier라고 한다.
                 // 오른쪽에 뜨는 Xcode modifier을 통해서 수정할 수도 있다.
                 // Text를 cmd + 클릭해서, 'Show SwiftUI Inspector을 선택해도 된다.
-                Text(landmark.name)
-                    .font(.title)// title : This applies the system font to the text so that it responds correctly to the user's preferred font sizes and settings.
+                HStack {
+                    Text(landmark.name)
+                        .font(.title)
+                        .foregroundColor(.primary)
+                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+                }
                 HStack { // horizontal
                     Text(landmark.park)
                         .font(.subheadline)
@@ -53,7 +62,10 @@ struct LandmarkDetail: View {
 }
 
 struct LandmarkDetail_Previews: PreviewProvider {
+    static let modelData = ModelData()
+    
     static var previews: some View {
         LandmarkDetail(landmark: ModelData().landmarks[0])
+            .environmentObject(modelData)
     }
 }
