@@ -124,7 +124,7 @@ export default function App() {
 
 
       <Container>
-        {/* 이 안의 값은 children으로 인식한다. */}
+        {/* 이 안의 값은 직접만든 <Container>안에 포함된 부분으로 children으로 인식한다. */}
         { 
         //render 내에서 JS 코드를 처리할 때 중괄호를 사용한다.
         //JSX : Javascript Expression
