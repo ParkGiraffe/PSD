@@ -13,6 +13,8 @@ final class ModelData: ObservableObject { // SwiftUI subscribes to your observab
     // create an array initialized with landmarks from a file.
     @Published var landmarks: [Landmark] = load("landmarkData.json")
     // An observable object needs to publish any changes to its data, so that its subscribers can pick up the change.
+    
+    var hikes: [Hike] = load("hikeData.json")
 }
 
 
