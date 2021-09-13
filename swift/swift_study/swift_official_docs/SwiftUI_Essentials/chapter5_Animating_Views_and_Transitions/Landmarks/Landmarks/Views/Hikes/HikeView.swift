@@ -7,6 +7,8 @@ A view displaying information about a hike, including an elevation graph.
 
 import SwiftUI
 
+// 만들어진 파일 불러옴.
+
 struct HikeView: View {
     var hike: Hike
     @State private var showDetail = false
