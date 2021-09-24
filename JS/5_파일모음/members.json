@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Jerry",
+        "age": 30,
+        "country": "Korea",
+        "selected": false
+      },
+      {
+        "id": 2,
+        "name": "Jake",
+        "age": 25,
+        "country": "Korea",
+        "selected": true
+      },
+      {
+        "id": 3,
+        "name": "Paul",
+        "age": 24,
+        "country": "Japan",
+        "selected": false
+      },
+      {
+        "id": 4,
+        "name": "Mike",
+        "age": 33,
+        "country": "Korea",
+        "selected": true
+      },
+      {
+        "id": 5,
+        "name": "Daniel",
+        "age": 40,
+        "country": "USA",
+        "selected": false
+      },
+      {
+        "id": 6,
+        "name": "Sunny",
+        "age": 42,
+        "country": "USA",
+        "selected": false
+      },
+      {
+        "id": 7,
+        "name": "Terry",
+        "age": 41,
+        "country": "USA",
+        "selected": false
+      },
+      {
+        "id": 8,
+        "name": "Mega",
+        "age": 47,
+        "country": "USA",
+        "selected": false
+      },
+      {
+        "id": 9,
+        "name": "Sonic",
+        "age": 48,
+        "country": "USA",
+        "selected": false
+      },
+      {
+        "id": 10,
+        "name": "DJI",
+        "age": 55,
+        "country": "USA",
+        "selected": false
+      }
+]
