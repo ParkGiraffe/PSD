@@ -20,9 +20,7 @@ extension AnyTransition {
         
         let removal = AnyTransition.scale.combined(with: .opacity)
         
-        return .asymmetric(insertion: insertion, removal: removal)
-        // 즐거운 한가위
-        
+        return .asymmetric(insertion: insertion, removal: removal)        
     }
 }
 
