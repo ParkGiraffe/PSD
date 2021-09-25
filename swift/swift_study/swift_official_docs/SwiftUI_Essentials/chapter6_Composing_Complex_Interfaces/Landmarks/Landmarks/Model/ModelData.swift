@@ -15,6 +15,13 @@ final class ModelData: ObservableObject { // SwiftUI subscribes to your observab
     // An observable object needs to publish any changes to its data, so that its subscribers can pick up the change.
     
     var hikes: [Hike] = load("hikeData.json")
+    
+    var categories: [String: [Landmark]] {
+        Dictionary(
+            grouping: landmarks,
+            by: { $0.category.rawValue }
+        )
+    }
 }
 
 
