@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//가로 슬라이드
 struct CategoryRow: View {
     var categoryName: String
     var items: [Landmark]
