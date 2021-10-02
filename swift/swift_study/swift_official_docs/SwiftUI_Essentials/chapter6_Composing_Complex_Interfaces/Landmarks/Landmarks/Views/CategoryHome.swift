@@ -4,18 +4,26 @@
 //
 //  Created by 박요셉 on 2021/09/25.
 //
-
 import SwiftUI
 
 struct CategoryHome: View {
     @EnvironmentObject var modelData: ModelData
-    
+
     var body: some View {
         NavigationView {
             List {
-                ForEach(modelData.categories.keys.sorted(), id: \.self) {
-                    key in Text(key)
+                
+                modelData.features[0].image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 200)
+                    .clipped()
+                    .listRowInsets(EdgeInsets())
+                
+                ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
+                    CategoryRow(categoryName: key, items: modelData.categories[key]!)
                 }
+                .listRowInsets(EdgeInsets())
             }
             .navigationTitle("Featured")
         }

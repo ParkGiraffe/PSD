@@ -16,6 +16,11 @@ final class ModelData: ObservableObject { // SwiftUI subscribes to your observab
     
     var hikes: [Hike] = load("hikeData.json")
     
+    var features: [Landmark] {
+        landmarks.filter { $0.isFeatured }
+    }
+    // In ModelData.swift, add a new computed features array, which contains only the landmarks that have isFeatured set to true.
+    
     var categories: [String: [Landmark]] {
         Dictionary(
             grouping: landmarks,
