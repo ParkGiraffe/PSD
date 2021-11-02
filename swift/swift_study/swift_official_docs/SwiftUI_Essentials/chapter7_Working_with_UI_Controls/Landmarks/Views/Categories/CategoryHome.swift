@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoryHome: View {
     @EnvironmentObject var modelData: ModelData
+    @State private var showingProfile = false
 
     var body: some View {
         NavigationView {
@@ -25,7 +26,19 @@ struct CategoryHome: View {
                 }
                 .listRowInsets(EdgeInsets())
             }
+            .listStyle(InsetListStyle()) // to remove insets
+            // swift에서는 inset을 여백 삽입의 뉘앙스로 많이 쓰는 것 같다.
             .navigationTitle("Featured")
+            .toolbar {
+                Button(action: { showingProfile.toggle() }) {
+                    Image(systemName: "person.crop.circle")
+                        .accessibilityLabel("User Profile")
+                }
+            }
+            .sheet(isPresented: $showingProfile) {
+                ProfileHost()
+                    .environmentObject(modelData)
+            }
         }
     }
 }
