@@ -20,6 +20,7 @@ export default function App() {
       name : name,
       age : age,
       country : country,
+      selected : false,
     }
 
     const editedMembers = [...members, newMember]
@@ -29,6 +30,19 @@ export default function App() {
 
   const deleteMember = (id) => {
     const editedMembers = members.filter(e => e.id != id )
+    setMembers(editedMembers)
+  }
+
+  // map( e => {} <- 여기에 중괄호를 넣으니 에러가 발생하네. 조사 필요.     )
+
+  const selectMember = (id) => {
+    const editedMembers = members.map(e =>
+      e.id == id ? {
+        ...e,
+        selected: e.selected ? false : true,
+      } : e
+    )
+
     setMembers(editedMembers)
   }
 
@@ -90,6 +104,7 @@ export default function App() {
               country={member.country}
               selected={member.selected}
               deleteMember={deleteMember}
+              selectMember={selectMember}
             />
           )}
       </ScrollView>

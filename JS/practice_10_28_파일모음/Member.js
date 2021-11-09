@@ -2,12 +2,14 @@ import React from 'react'
 import { TouchableOpacity, StyleSheet, View, Text } from 'react-native'
 
 const Member = (props) => {
-    const { id, name, age, country, selected, deleteMember } = props
+    const { id, name, age, country, selected, deleteMember, selectMember } = props
     
     return(
         <TouchableOpacity onPress={() => {
             //눌렀을때의 처리 로직을 화살표 함수로 표현해준다
-            console.log('member.name: ', name)        }}>
+            console.log('member.name: ', name)        
+            selectMember(id)
+        }}>
             <View style={selected === true ? styles.selectedContainer : styles.container}>
                 <Text style={styles.title}>{id}</Text>
                 <Text style={styles.title}>{name}</Text>
