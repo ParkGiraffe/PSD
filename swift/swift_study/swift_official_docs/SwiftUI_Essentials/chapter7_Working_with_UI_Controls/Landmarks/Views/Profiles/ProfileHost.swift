@@ -25,7 +25,7 @@ struct ProfileHost: View {
                 ProfileSummary(profile: modelData.profile)
             
             } else {
-                Text("Profile Editord")
+                ProfileEditor(profile: $draftProfile)
             }
             }
         .padding()
